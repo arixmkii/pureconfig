@@ -4,8 +4,9 @@ import _root_.scalaz.{==>>, ICons, INil, IList, ISet, Maybe, NonEmptyList, Order
 import pureconfig._
 import pureconfig.error.FailureReason
 
-/** `ConfigReader` and `ConfigWriter` instances for `scalaz` data structures.
-  */
+/**
+ * `ConfigReader` and `ConfigWriter` instances for `scalaz` data structures.
+ */
 package object scalaz {
 
   case object EmptyIListFound extends FailureReason {

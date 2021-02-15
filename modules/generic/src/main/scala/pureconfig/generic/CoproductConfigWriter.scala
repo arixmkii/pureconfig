@@ -5,11 +5,12 @@ import pureconfig.{ConfigWriter, Derivation}
 import shapeless.labelled._
 import shapeless._
 
-/** A `ConfigWriter` for generic representations of coproducts.
-  *
-  * @tparam Original the original type for which `Repr` is the coproduct representation
-  * @tparam Repr the generic representation
-  */
+/**
+ * A `ConfigWriter` for generic representations of coproducts.
+ *
+ * @tparam Original the original type for which `Repr` is the coproduct representation
+ * @tparam Repr the generic representation
+ */
 private[generic] trait CoproductConfigWriter[Original, Repr <: Coproduct] extends ConfigWriter[Repr]
 
 object CoproductConfigWriter {

@@ -8,8 +8,9 @@ import com.typesafe.config.{ConfigValue, ConfigValueFactory}
 import pureconfig._
 import pureconfig.generic.{CoproductHint, ProductHint}
 
-/** An object containing Magnolia `combine` and `dispatch` methods to generate `ConfigWriter` instances.
-  */
+/**
+ * An object containing Magnolia `combine` and `dispatch` methods to generate `ConfigWriter` instances.
+ */
 object MagnoliaConfigWriter {
 
   def combine[A](ctx: CaseClass[ConfigWriter, A])(implicit hint: ProductHint[A]): ConfigWriter[A] =

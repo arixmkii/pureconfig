@@ -5,8 +5,9 @@ import scala.xml.{Elem, XML}
 import pureconfig.ConvertHelpers.catchReadError
 import pureconfig.{ConfigReader, ConfigWriter}
 
-/** [[ConfigReader]] and [[ConfigWriter]] instances for Scala-XML's data structures.
-  */
+/**
+ * [[ConfigReader]] and [[ConfigWriter]] instances for Scala-XML's data structures.
+ */
 package object scalaxml {
 
   implicit def elemReader: ConfigReader[Elem] =

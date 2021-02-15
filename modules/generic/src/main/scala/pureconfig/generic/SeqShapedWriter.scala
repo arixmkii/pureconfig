@@ -6,10 +6,11 @@ import com.typesafe.config.{ConfigList, ConfigValue, ConfigValueFactory}
 import pureconfig.{ConfigWriter, Derivation}
 import shapeless._
 
-/** A `ConfigWriter` for generic representations that writes values in the shape of a sequence.
-  *
-  * @tparam Repr the generic representation
-  */
+/**
+ * A `ConfigWriter` for generic representations that writes values in the shape of a sequence.
+ *
+ * @tparam Repr the generic representation
+ */
 private[generic] trait SeqShapedWriter[Repr] extends ConfigWriter[Repr]
 
 object SeqShapedWriter {

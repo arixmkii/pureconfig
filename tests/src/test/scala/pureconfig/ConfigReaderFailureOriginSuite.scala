@@ -9,8 +9,9 @@ import com.typesafe.config.{ConfigFactory, ConfigValueType}
 import org.scalatest.{EitherValues, Inside}
 import pureconfig.error._
 
-/** Suite of tests related to the origin of ConfigValues that raised failures.
-  */
+/**
+ * Suite of tests related to the origin of ConfigValues that raised failures.
+ */
 class ConfigReaderFailureOriginSuite extends BaseSuite with EitherValues with Inside {
   case class Conf(a: Int, b: String, c: Int)
   implicit val confReader: ConfigReader[Conf] = ConfigReader.forProduct3("a", "b", "c")(Conf.apply)

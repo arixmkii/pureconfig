@@ -5,19 +5,20 @@ import org.joda.time.format._
 import pureconfig.ConfigConvert
 import pureconfig.ConfigConvert._
 
-/** Provides methods that create [[ConfigConvert]] instances from a set of parameters used to configure the instances.
-  *
-  * The result of calling one of the methods can be assigned to an `implicit val` so that `pureconfig` will be able to
-  * use it:
-  * {{{
-  *   implicit val localDateConfigConvert = makeLocalDateConfigConvert(ISODateTimeFormat)
-  * }}}
-  *
-  * @example we cannot provide a [[ConfigConvert]] for [[org.joda.time.LocalDate]] because traditionally there are many different
-  * [[org.joda.time.format.DateTimeFormatter]]s to parse a [[org.joda.time.LocalDate]] from a [[java.lang.String]]. This package
-  * provides a method that takes an input [[org.joda.time.format.DateTimeFormatter]] and returns a [[ConfigConvert]] for
-  * [[org.joda.time.LocalDate]] which will use that [[org.joda.time.format.DateTimeFormatter]] to parse a [[org.joda.time.LocalDate]].
-  */
+/**
+ * Provides methods that create [[ConfigConvert]] instances from a set of parameters used to configure the instances.
+ *
+ * The result of calling one of the methods can be assigned to an `implicit val` so that `pureconfig` will be able to
+ * use it:
+ * {{{
+ *   implicit val localDateConfigConvert = makeLocalDateConfigConvert(ISODateTimeFormat)
+ * }}}
+ *
+ * @example we cannot provide a [[ConfigConvert]] for [[org.joda.time.LocalDate]] because traditionally there are many different
+ * [[org.joda.time.format.DateTimeFormatter]]s to parse a [[org.joda.time.LocalDate]] from a [[java.lang.String]]. This package
+ * provides a method that takes an input [[org.joda.time.format.DateTimeFormatter]] and returns a [[ConfigConvert]] for
+ * [[org.joda.time.LocalDate]] which will use that [[org.joda.time.format.DateTimeFormatter]] to parse a [[org.joda.time.LocalDate]].
+ */
 package object configurable {
   def dateTimeConfigConvert(formatter: DateTimeFormatter): ConfigConvert[DateTime] =
     viaNonEmptyString[DateTime](catchReadError(DateTime.parse(_, formatter)), formatter.print)

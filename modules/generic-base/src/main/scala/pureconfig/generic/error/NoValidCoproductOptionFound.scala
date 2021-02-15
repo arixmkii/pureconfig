@@ -3,11 +3,12 @@ package pureconfig.generic.error
 import com.typesafe.config.{ConfigRenderOptions, ConfigValue}
 import pureconfig.error.{ConfigReaderFailures, FailureReason}
 
-/** A failure reason given when a valid option for a coproduct cannot be found.
-  *
-  * @param value the ConfigValue that was unable to be mapped to a coproduct option
-  * @param optionFailures the failures produced when attempting to read coproduct options
-  */
+/**
+ * A failure reason given when a valid option for a coproduct cannot be found.
+ *
+ * @param value the ConfigValue that was unable to be mapped to a coproduct option
+ * @param optionFailures the failures produced when attempting to read coproduct options
+ */
 final case class NoValidCoproductOptionFound(value: ConfigValue, optionFailures: Seq[(String, ConfigReaderFailures)])
     extends FailureReason {
   def description = {

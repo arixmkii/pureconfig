@@ -9,19 +9,20 @@ import pureconfig.error.FailureReason
 
 import scala.collection.JavaConverters._
 
-/** Provides methods that create [[ConfigConvert]] instances from a set of parameters used to configure the instances.
-  *
-  * The result of calling one of the methods can be assigned to an `implicit val` so that `pureconfig` will be able to
-  * use it:
-  * {{{
-  *   implicit val localDateConfigConvert = makeLocalDateConfigConvert(DateTimeFormatter.ISO_TIME)
-  * }}}
-  *
-  * @example we cannot provide a [[ConfigConvert]] for [[java.time.LocalDate]] because traditionally there are many different
-  * [[java.time.format.DateTimeFormatter]]s to parse a [[java.time.LocalDate]] from a [[java.lang.String]]. This package
-  * provides a method that takes an input [[java.time.format.DateTimeFormatter]] and returns a [[ConfigConvert]] for
-  * [[java.time.LocalDate]] which will use that [[java.time.format.DateTimeFormatter]] to parse a [[java.time.LocalDate]].
-  */
+/**
+ * Provides methods that create [[ConfigConvert]] instances from a set of parameters used to configure the instances.
+ *
+ * The result of calling one of the methods can be assigned to an `implicit val` so that `pureconfig` will be able to
+ * use it:
+ * {{{
+ *   implicit val localDateConfigConvert = makeLocalDateConfigConvert(DateTimeFormatter.ISO_TIME)
+ * }}}
+ *
+ * @example we cannot provide a [[ConfigConvert]] for [[java.time.LocalDate]] because traditionally there are many different
+ * [[java.time.format.DateTimeFormatter]]s to parse a [[java.time.LocalDate]] from a [[java.lang.String]]. This package
+ * provides a method that takes an input [[java.time.format.DateTimeFormatter]] and returns a [[ConfigConvert]] for
+ * [[java.time.LocalDate]] which will use that [[java.time.format.DateTimeFormatter]] to parse a [[java.time.LocalDate]].
+ */
 package object configurable {
 
   def localDateConfigConvert(formatter: DateTimeFormatter): ConfigConvert[LocalDate] =

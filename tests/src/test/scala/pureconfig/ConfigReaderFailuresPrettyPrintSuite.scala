@@ -8,8 +8,9 @@ import java.net.URL
 import com.typesafe.config._
 import pureconfig.error._
 
-/** Suite of tests related to the pretty printing of config reader failures.
-  */
+/**
+ * Suite of tests related to the pretty printing of config reader failures.
+ */
 class ConfigReaderFailuresPrettyPrintSuite extends BaseSuite {
   "A ConfigReaderFailures prettyPrint method" should "print errors with a configurable identation" in {
 

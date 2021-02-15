@@ -6,8 +6,9 @@ import com.typesafe.config._
 import pureconfig._
 import pureconfig.error._
 
-/** Contains common utilities to deal with exceptions in unsafe methods.
-  */
+/**
+ * Contains common utilities to deal with exceptions in unsafe methods.
+ */
 object ErrorUtil {
 
   def unsafeToReaderResult[A](

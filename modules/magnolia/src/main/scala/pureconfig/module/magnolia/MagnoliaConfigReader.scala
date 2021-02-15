@@ -7,8 +7,9 @@ import pureconfig.generic.ProductHint.UseOrDefault
 import pureconfig.generic.error.InvalidCoproductOption
 import pureconfig.generic.{CoproductHint, ProductHint}
 
-/** An object containing Magnolia `combine` and `dispatch` methods to generate `ConfigReader` instances.
-  */
+/**
+ * An object containing Magnolia `combine` and `dispatch` methods to generate `ConfigReader` instances.
+ */
 object MagnoliaConfigReader {
 
   def combine[A](ctx: CaseClass[ConfigReader, A])(implicit hint: ProductHint[A]): ConfigReader[A] =

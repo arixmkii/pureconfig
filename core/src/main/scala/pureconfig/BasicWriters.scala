@@ -15,8 +15,9 @@ import scala.util.matching.Regex
 
 import com.typesafe.config._
 
-/** Trait containing `ConfigWriter` instances for primitive types.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for primitive types.
+ */
 trait PrimitiveWriters {
 
   implicit val stringConfigWriter: ConfigWriter[String] = ConfigWriter.forPrimitive[String]
@@ -30,15 +31,17 @@ trait PrimitiveWriters {
   implicit val byteConfigWriter: ConfigWriter[Byte] = ConfigWriter.forPrimitive[Byte]
 }
 
-/** Trait containing instance for `ConfigWriter` for Java Enum.
-  */
+/**
+ * Trait containing instance for `ConfigWriter` for Java Enum.
+ */
 trait JavaEnumWriter {
 
   implicit def javaEnumWriter[A <: java.lang.Enum[A]]: ConfigWriter[A] = ConfigWriter.toDefaultString[A]
 }
 
-/** Trait containing `ConfigWriter` instances for classes related to file system paths and URIs.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for classes related to file system paths and URIs.
+ */
 trait UriAndPathWriters {
 
   implicit val urlConfigWriter: ConfigWriter[URL] = ConfigWriter.toDefaultString[URL]
@@ -48,8 +51,9 @@ trait UriAndPathWriters {
   implicit val uriConfigWriter: ConfigWriter[URI] = ConfigWriter.toDefaultString[URI]
 }
 
-/** Trait containing `ConfigWriter` instances for classes related to regular expressions.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for classes related to regular expressions.
+ */
 trait RegexWriters {
 
   implicit val patternWriter: ConfigWriter[Pattern] = ConfigWriter.toString[Pattern](_.pattern)
@@ -57,8 +61,9 @@ trait RegexWriters {
     ConfigWriter.toString[Regex](_.pattern.pattern) // Regex.regex isn't supported until 2.11
 }
 
-/** Trait containing `ConfigWriter` instances for `java.time` classes.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for `java.time` classes.
+ */
 trait JavaTimeWriters {
 
   implicit val instantConfigWriter: ConfigWriter[Instant] = ConfigWriter.toDefaultString[Instant]
@@ -74,9 +79,10 @@ trait JavaTimeWriters {
   implicit val javaDurationConfigWriter: ConfigWriter[JavaDuration] = ConfigWriter.toDefaultString[JavaDuration]
 }
 
-/** Trait containing `ConfigWriter` instances for [[scala.concurrent.duration.Duration]] and
-  * [[scala.concurrent.duration.FiniteDuration]].
-  */
+/**
+ * Trait containing `ConfigWriter` instances for [[scala.concurrent.duration.FiniteDuration]] and
+ * [[scala.concurrent.duration.Duration]].
+ */
 trait DurationWriters {
 
   implicit val durationConfigWriter: ConfigWriter[Duration] =
@@ -85,8 +91,9 @@ trait DurationWriters {
     ConfigWriter.toString[FiniteDuration](DurationUtils.fromDuration)
 }
 
-/** Trait containing `ConfigWriter` instances for Java and Scala arbitrary-precision numeric types.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for Java and Scala arbitrary-precision numeric types.
+ */
 trait NumericWriters {
 
   implicit val javaBigDecimalWriter: ConfigWriter[JavaBigDecimal] = ConfigWriter.toDefaultString[JavaBigDecimal]
@@ -95,8 +102,9 @@ trait NumericWriters {
   implicit val scalaBigIntWriter: ConfigWriter[BigInt] = ConfigWriter.toDefaultString[BigInt]
 }
 
-/** Trait containing `ConfigWriter` instances for Typesafe config models.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for Typesafe config models.
+ */
 trait TypesafeConfigWriters {
 
   implicit val configConfigWriter: ConfigWriter[Config] = new ConfigWriter[Config] {
@@ -120,9 +128,10 @@ trait TypesafeConfigWriters {
   }
 }
 
-/** Trait containing `ConfigWriter` instances for primitive types and simple classes in Java and Scala standard
-  * libraries.
-  */
+/**
+ * Trait containing `ConfigWriter` instances for primitive types and simple classes in Java and Scala standard
+ * libraries.
+ */
 trait BasicWriters
     extends PrimitiveWriters
     with JavaEnumWriter

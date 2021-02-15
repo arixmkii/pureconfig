@@ -21,13 +21,15 @@ import scala.util.control.NonFatal
 
 import pureconfig.error.{CannotConvert, ExceptionThrown, FailureReason}
 
-/** Utility functions for converting a `String` to a `Duration` and vice versa. The parser accepts the HOCON unit
-  * syntax.
-  */
+/**
+ * Utility functions for converting a `String` to a `Duration` and vice versa. The parser accepts the HOCON unit
+ * syntax.
+ */
 private[pureconfig] object DurationUtils {
 
-  /** Convert a string to a Duration while trying to maintain compatibility with Typesafe's abbreviations.
-    */
+  /**
+   * Convert a string to a Duration while trying to maintain compatibility with Typesafe's abbreviations.
+   */
   val fromString: String => Either[FailureReason, Duration] = { string =>
     if (string == UndefinedDuration) Right(Duration.Undefined)
     else
@@ -105,9 +107,10 @@ private[pureconfig] object DurationUtils {
   private val justAMinute =
     shortMinuteRegex.replaceSomeIn(_: String, m => Some(s"${m.group(1)}${m.group(2)}minutes${m.group(3)}"))
 
-  /** Format a possibily infinite duration as a string with a suitable time unit using units TypesafeConfig understands.
-    * Caveat: TypesafeConfig doesn't undersand infinite durations
-    */
+  /**
+   * Format a possibily infinite duration as a string with a suitable time unit using units TypesafeConfig understands.
+   * Caveat: TypesafeConfig doesn't undersand infinite durations
+   */
   def fromDuration(d: Duration): String = {
     d match {
       case f: FiniteDuration => fromFiniteDuration(f)
@@ -121,8 +124,9 @@ private[pureconfig] object DurationUtils {
   /// which is inconsistent with the `Inf` and `Minus` `toString` provided by other special `Duration`s.
   private final val UndefinedDuration = "Undefined"
 
-  /** Format a FiniteDuration as a string with a suitable time unit using units TypesafeConfig understands.
-    */
+  /**
+   * Format a FiniteDuration as a string with a suitable time unit using units TypesafeConfig understands.
+   */
   def fromFiniteDuration(d: FiniteDuration): String = {
     d.toNanos match {
       case 0L => "0"
